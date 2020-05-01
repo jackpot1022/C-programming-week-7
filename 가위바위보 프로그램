@@ -1,0 +1,58 @@
+#include <stdio.h>
+
+int getrcp()
+{
+	int rcp = 0;
+	printf("가위(1), 바위(2), 보(3) 중 하나를 숫자로 입력하세요: ");
+	scanf("%d", &rcp);
+	return rcp;
+}
+void rcpres(int rcp)
+{
+	if (rcp == 0)
+	{
+		printf("가위를 냈습니다.\n");
+	}
+	else if (rcp == 1)
+	{
+		printf("바위를 냈습니다.\n");
+	}
+	else if (rcp == 2)
+	{
+		printf("보를 냈습니다.\n");
+	}
+	return;
+}
+void totalres(int a, int b)
+{
+	int res = (a - b) % 3;
+	if (res == 0)
+	{
+		printf("A양과 B군이 비겼습니다.");
+	}
+	else if (res == 1)
+	{
+		printf("A양이 이겼습니다.");
+	}
+	else if (res == 2)
+	{
+		printf("B군이 이겼습니다.");
+	}
+	return;
+}
+int main()
+{
+	int A = 0, B = 0;
+
+	printf("A양, ");
+	A = getrcp() - 1;
+	rcpres(A);
+
+	printf("B군, ");
+	B = getrcp() - 1;
+	rcpres(B);
+
+	totalres(A, B);
+
+	return 0;
+}
