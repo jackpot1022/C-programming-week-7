@@ -70,9 +70,9 @@ void makecal(year, month)
 	int lastday = getlastday(month, year);
 	firstday = firstday % 7;
 
-	for (int i = 1; i < firstday; i++)
+	for (int i = 1; i <= firstday; i++)
 	{
-		printf("     ");
+		printf("    ");
 	}
 	for (day = 1 ; day <= 7 - firstday; ++day)
 	{
