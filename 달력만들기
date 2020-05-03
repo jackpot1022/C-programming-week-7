@@ -1,0 +1,104 @@
+#include <stdio.h>
+
+int getint()
+{
+	int jungsu = 0;
+	printf("입력하세요: ");
+	scanf("%d", &jungsu);
+	return jungsu;
+}
+int getpreyear(year)
+{
+	int preyear = year * 365 + year / 4 - year / 100 + year / 400;
+	return preyear;
+}
+int getpremonth(month, year)
+{
+	int premonth = 0;
+	int formalmonth[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	if (month == 2)
+	{
+		if (year % 400 == 0)
+		{
+			formalmonth[2]++;
+		}
+		else if (year % 100 == 0)
+		{
+			
+		}
+		else if (year % 4 == 0)
+		{
+			formalmonth[2]++;
+		}
+	}
+	for (int i = 1; i <= month; i++)
+	{
+		premonth += formalmonth[i];
+	}
+	return premonth;
+}
+int getlastday(month, year)
+{
+	int formalmonth[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	if (month == 2)
+	{
+		if (year % 400 == 0)
+		{
+			formalmonth[2]++;
+		}
+		else if (year % 100 == 0)
+		{
+
+		}
+		else if (year % 4 == 0)
+		{
+			formalmonth[2]++;
+		}
+	}
+	int lastday = formalmonth[month];
+	return lastday;
+}
+void makecal(year, month)
+{
+	int day = 0, week = 0, sunday = 0, saturday = 6;
+	printf("\n              %4d년 %d월\n\n", year, month);
+
+	int previousyear = getpreyear(year - 1);
+	int previousmonth = getpremonth(month - 1, year);
+
+	int firstday = previousmonth + previousyear + 1;
+	int lastday = getlastday(month, year);
+	firstday = firstday % 7;
+
+	for (int i = 1; i < firstday; i++)
+	{
+		printf("     ");
+	}
+	for (day = 1 ; day <= 7 - firstday; ++day)
+	{
+		printf("%4d", day);
+	}
+	for (week = day ; week <= lastday ; week += 7)
+	{
+		printf("\n");
+		for (int j = 0 ; (j <= saturday) && (day <=lastday) ; day++, j++)
+		{
+			printf("%4d", day);
+		}
+	}
+	
+}
+int main()
+{
+	int year = 0, month = 0;
+
+	printf("년도를 ");
+	year = getint();
+
+	printf("월을 ");
+	month = getint();
+
+	makecal(year, month);
+	
+	return 0;
+}
